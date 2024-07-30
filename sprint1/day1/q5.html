@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+    <style>
+      button {
+        background-color: black;
+        color: white;
+      }
+      h2 {
+        color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      // Your JSX code here
+      function card() {
+        return (
+          <div>
+            <img src="./image.png" alt="watch pic" />
+            <h1>Automatic Watch</h1>
+            <p>$ 350.00 USD</p>
+            <h6>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt
+              sit eos rerum voluptate vel sed, voluptatem eveniet quam. Corporis
+              facere ipsa eum? Tempore facilis quas itaque ab tenetur corrupti
+              iste?
+            </h6>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi
+              mollitia nisi officia, blanditiis eaque fuga voluptatem! Fugit
+              debitis nam odio accusamus assumenda natus reprehenderit
+              temporibus laudantium perspiciatis cupiditate, illum fugiat.
+              Placeat ut harum vero accusantium quo voluptas iste blanditiis
+              recusandae nesciunt explicabo id architecto dolorem quasi atque,
+              voluptatibus, illum voluptatem ratione, beatae suscipit earum
+              excepturi quam dolorum vel. Ad, dolor.
+            </p>
+            <div>
+              <p>Chronograph : Anti-magnetic </p>
+              <p>master Chronometer Certified : Chronometer</p>
+              <p>Tachmeter : samll seconds</p>
+            </div>
+            <div>
+              <h2>Product Details</h2>
+              <p>
+                <b>Between lugs</b> 20 mm
+              </p>
+              <p>
+                <b>Bracelet</b> leather strap
+              </p>
+              <p>
+                <b>Case</b>Steel
+              </p>
+              <p>
+                <b>Case diameter</b>42 mm
+              </p>
+              <p>
+                <b>Dial color</b>Black
+              </p>
+              <p>
+                <b>Crystal: </b>Domed Scratch-resistant sapphire crystal with
+                anti-reflective
+              </p>
+            </div>
+            <button>Add to Cart</button>
+          </div>
+        );
+      }
+    </script>
+  </body>
+</html>
