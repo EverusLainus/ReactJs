@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+    <style>
+      button {
+        background-color: blue;
+        color: white;
+      }
+      .call {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .main {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const doc = `<p>"React is a JavaScript Library"</p>`;
+      function condRender() {
+        function alertHello() {
+          alert("alert hello");
+        }
+        return (
+          <>
+            <div className="main">
+              <h1>Subscribe</h1>
+              <p> Subscribe to our new Letter and stay up to date</p>
+              <div className="call">
+                <input type="text" placeholder="johndoe@dot.net" />
+                <button>subscribe</button>
+              </div>
+              <button onClick={alertHello}>Alert Hello</button>
+            </div>
+          </>
+        );
+      }
+
+      const reactRoot = React.reactRoot(document.getElementById("root"));
+      reactRoot.render(<condRender />);
+    </script>
+  </body>
+</html>
