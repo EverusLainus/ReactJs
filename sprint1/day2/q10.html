@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Components in React</title>
+    <style>
+      .evenBtn {
+        background-color: purple;
+        color: white;
+      }
+      .oddBtn {
+        background-color: grey;
+        color: purple;
+      }
+      .main {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+      }
+      .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      // Write your code here
+      function Points() {
+        return (
+          <ol>
+            <li>1 lorem ipsium</li>
+            <li>Lorem, ipsum dolor</li>
+            <li>Monthly Updates</li>
+          </ol>
+        );
+      }
+
+      function Offer({ title, name, i }) {
+        return (
+          <div className="row">
+            <h4>{title}</h4>
+            <Points />
+            <h2>{name}</h2>
+            {i == 2 && <button className="evenBtn">Get Started</button>}
+            {i == 1 && <button className="oddBtn">Get Started</button>}
+          </div>
+        );
+      }
+      function App() {
+        return (
+          <div className="main">
+            <Offer title="Started" name="Free" i="1" />
+            <Offer title="Lorem Plus" name="$32.00" i="2" />
+            <Offer title="Lorem Pro" name="$50.00" i="1" />
+          </div>
+        );
+      }
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
