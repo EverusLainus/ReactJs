@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic List Rendering</title>
+    <style>
+      .grid {
+        width: 50vw;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-around;
+        gap: 10vw;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Image({ src }) {
+        return (
+          <div>
+            <img src={src} alt="image" />
+          </div>
+        );
+      }
+      function Gallery({ children }) {
+        return <grid className="grid">{children}</grid>;
+      }
+
+      // Example usage
+      function App() {
+        return (
+          <>
+            <Gallery>
+              <Image src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" />
+              <Image src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg" />
+              <Image src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" />
+              <Image src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg" />
+            </Gallery>
+            ;
+          </>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
