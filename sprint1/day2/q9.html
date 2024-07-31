@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Components in React</title>
+    <style>
+      .main {
+        background-color: rgb(223, 223, 223);
+      }
+      .sec2 {
+        background-color: greenyellow;
+        color: black;
+      }
+      .sec3 {
+        display: flex;
+        gap: 2vw;
+      }
+      .sec1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Section2({ id }) {
+        return <div className="sec2">{id}</div>;
+      }
+      function Section1({ id, title, des }) {
+        console.log(id + " " + title + " " + des);
+        return (
+          <div className="sec1">
+            <Section2 id={id} />
+            <h4>{title}</h4>
+            <p>{des}</p>
+          </div>
+        );
+      }
+      function App() {
+        return (
+          <div className="main">
+            <h1>Getting started in 3 easy steps</h1>
+            <div className="sec3">
+              <Section1
+                id="01"
+                title="Find your Template"
+                des="Rvery templaes is embeddd within as iframe so you can easiy check heat hey lok lidke and test he bes"
+              />
+              <Section1
+                id="02"
+                title="Find your Template"
+                des="Rvery templaes is embeddd within as iframe so you can easiy check heat hey lok lidke and test he bes"
+              />
+              <Section1
+                id="03"
+                title="Find your Template"
+                des="Rvery templaes is embeddd within as iframe so you can easiy check heasfs s ifs fis fsif euf hef e8fu dfhsi fiest he bes"
+              />
+            </div>
+          </div>
+        );
+      }
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
