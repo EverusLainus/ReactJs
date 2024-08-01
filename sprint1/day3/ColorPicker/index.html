@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <style>
+      .colorBox {
+        color: 1px solid black;
+        width: 50vw;
+        height: 50vw;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function ColorPicker({ color }) {
+      console.log(color);
+      return (
+        <div
+          style={{
+            backgroundColor: color,
+            border: "1px solid black",
+            width: "50vw",
+            height: "50vw",
+          }}
+        ></div>
+      );
+    }
+    //#C71585
+    function App() {
+      const [color, setColor] = React.useState("");
+      const [error, setError] = React.useState("");
+      function handleChange(e) {
+        e.preventDefault();
+        setColor(e.target.value);
+        if (e.target.value.length > 7) {
+          setError("input should have at most 7 characters");
+        }
+      }
+      return (
+        <div className="colorBox">
+          <ColorPicker color={color} />
+          <input
+            onChange={handleChange}
+            type="text"
+            placeholder="type a hex code"
+          />
+          <p>{error}</p>
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</html>
