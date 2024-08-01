@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function InputSection({ id, hobby, onDelete, onChange }) {
+      return (
+        <div>
+          <input
+            value={hobby}
+            placeholder="write a hobby"
+            onChange={(e) => onChange(id, e.target.value)}
+          />
+          <button onClick={() => onDelete(id)}>delete</button>
+        </div>
+      );
+    }
+
+    function App() {
+      const [inputs, setInputs] = React.useState([]);
+      const [data, setData] = React.useState([]);
+      const [hobby1, setHobby1] = React.useState("");
+
+      function handleAddInput(e) {
+        e.preventDefault();
+        setInputs([...inputs, inputs.length]);
+        setData([...data, ""]);
+      }
+
+      function handleDelete(id) {
+        setInputs(inputs.filter((_, index) => index !== id));
+        setData(data.filter((_, index) => index !== id));
+      }
+
+      function handleChange(id, value) {
+        const newData = data.map((item, index) =>
+          index === id ? value : item
+        );
+        setData(newData);
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        // console.log("Inputs:",  inputs);
+        console.log("Data:", hobby + " " + data);
+      }
+
+      return (
+        <div>
+          <button onClick={handleAddInput}>Add another Hobby</button>
+          <InputSection
+            key={-1}
+            id={-1}
+            hobby={hobby1}
+            onDelete={handleDelete}
+            onChange={handleChange}
+          />
+          {inputs.map((input, index) => (
+            <InputSection
+              key={index}
+              id={index}
+              hobby={data[index]}
+              onDelete={handleDelete}
+              onChange={handleChange}
+            />
+          ))}
+          <button onClick={handleSubmit}>Submit</button>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</html>
