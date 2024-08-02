@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const Question = ({ question, c1, c2, c3, answer, setAnswer }) => {
+      //console.log(answer);
+      const handleChange = (e) => {
+        e.preventDefault();
+        //console.log(e.target.value);
+
+        setAnswer({ ...answer, [e.target.name]: e.target.value });
+        //console.log(answer);
+      };
+      return (
+        <div>
+          <h4>{question}</h4>
+          <div>
+            <input
+              type="radio"
+              id={c1}
+              name={question}
+              value={c1}
+              onChange={handleChange}
+            />
+            <label for={c1}>{c1}</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id={c2}
+              name={question}
+              value={c2}
+              onChange={handleChange}
+            />
+            <label for={c2}>{c2}</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id={c3}
+              name={question}
+              value={c3}
+              onChange={handleChange}
+            />
+            <label for={c3}>{c3}</label>
+          </div>
+        </div>
+      );
+    };
+    const Quiz = () => {
+      const [answer, setAnswer] = React.useState({});
+      const [value, setValue] = React.useState(0);
+      const [score, showScore] = React.useState(true);
+      function handleSubmit() {
+        showScore(false);
+        console.log(answer);
+        if (answer["what is 2^2"] == "4") {
+          console.log("true in 2^2");
+          setValue((prev) => prev + 1);
+        }
+        if (answer["what is 2^1"] == "2") {
+          console.log("true in 2^1");
+          setValue((prev) => prev + 1);
+        }
+        if (answer["what is 2^0"] == "1") {
+          console.log("true in 2^0");
+          setValue((prev) => prev + 1);
+        }
+      }
+
+      return (
+        <div>
+          {score && (
+            <>
+              <Question
+                question="what is 2^2"
+                c1="1"
+                c2="2"
+                c3="4"
+                answer={answer}
+                setAnswer={setAnswer}
+              />
+              <Question
+                question="what is 2^0"
+                c1="1"
+                c2="2"
+                c3="4"
+                answer={answer}
+                setAnswer={setAnswer}
+              />
+              <Question
+                question="what is 2^1"
+                c1="1"
+                c2="2"
+                c3="4"
+                answer={answer}
+                setAnswer={setAnswer}
+              />
+              <button onClick={handleSubmit}>submit</button>
+            </>
+          )}
+          {!score && <h1> Your score:{value} </h1>}
+        </div>
+      );
+    };
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Quiz />);
+  </script>
+</html>
