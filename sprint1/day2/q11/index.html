@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        #root {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .NavBar {
+            display: flex;
+            justify-content: space-between;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .NavTitle {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 3vw;
+        }
+        .people{
+            display: flex;
+            justify-content: stretch;
+            align-items: center;
+            justify-items: center;
+            gap:10vmin;
+        }
+
+        .profileGrid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5vw;
+        }
+        .notes{
+            display: flex;
+            margin:2vmin;
+        }
+        .profile{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    function NavTitle({ title }) {
+        return (
+            <span>{title}</span>
+        )
+    }
+    function NavBar() {
+        return (
+            <div className="NavBar">
+                <h4 className="logo">ZERODHA</h4>
+                <div className="NavTitle">
+                    <NavTitle title="SignUp" />
+                    <NavTitle title="About" />
+                    <NavTitle title="Products" />
+                    <NavTitle title="Pricing" />
+                    <NavTitle title="Support" />
+                    <img src="./menu.png" alt="menu" />
+                </div>
+            </div>
+        )
+    }
+    /*Hero Section*/
+    function HeroSection() {
+        return (
+            <h1 style={{margin:"10vmin"}}>We Poineered the the discount broking model in India. Now we are
+                breaking ground with our technology</h1>
+        )
+    }
+    /*notes secton */
+    //Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, necessitatibus consequatur? Asperiores cid.
+    function Para({ des }) {
+        return (
+            <p>{des}</p>
+        )
+    }
+    function Notes() {
+        return (
+            <div className="notes">
+                <div>
+                    <Para des="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, necessitatibus consequatur? Asperiores cumque 
+                    umque at fugit, dolores recusandae saepe cum et impedit aliquam illo quibusdam eius maxime nam omnis ab aliqu
+                    y"/>
+                    <Para des="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, necessitatibus consequatur? Asperiores cumque 
+                    umque at fugit, dolores recusandae saepe cum et impedit aliquam illo quibusdam eius maxime nam omnis ab aliqu
+                    y"/>
+                    <Para des="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, necessitatibus consequatur? Asperiores cumque 
+                    umque at fugit, dolores recusandae saepe cum et impedit aliquam illo quibusdam eius maxime nam omnis ab aliqu
+                    y"/>
+                </div>
+                <div>
+                    <Para des="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, necessitatibus consequatur? Asperiores cumque 
+                    umque at fugit, dolores recusandae saepe cum et impedit aliquam illo quibusdam eius maxime nam omnis ab aliqu
+                    y"/>
+                    <Para des="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, necessitatibus consequatur? Asperiores cumque 
+                    umque at fugit, dolores recusandae saepe cum et impedit aliquam illo quibusdam eius maxime nam omnis ab aliqu
+                    y"/>
+                </div>
+            </div>
+        )
+    }
+
+    function Profile({ image, name, title, bio = "" }) {
+        return (
+            <div className="profile">
+                <img src={image} alt="ProfilePic" />
+                <h6>{name}</h6>
+                <p>{title}</p>
+                <p>{bio}</p>
+            </div>
+        )
+    }
+
+    function People() {
+        return (
+            <div >
+                <h1 style={{textAlign:"center"}}>People</h1>
+                <div className="people">
+                <div><Profile image="./pic1.png" name="Nithin Kamath" title="Founder & CEO" /></div>
+                <div><Para des="Tio Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, necessitatibus consequatur? Asperiores cumque 
+                    umque at fugit, dolores recusandae saepe cum et impedit aliquam illo quibusdam eius maxime nam omnis ab aliqu
+                    y"/>
+                    <Para des="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, necessitatibus consequatur? Asperiores cumque 
+                    umque at fugit, dolores recusandae saepe cum et impedit aliquam illo quibusdam eius maxime nam omnis ab aliqu
+                    y"/>
+                    <p>Connect to twitter / Homepage</p>
+                </div>
+                </div>
+            </div>
+        )
+    }
+
+    function Grid() {
+        return (
+            <div className="profileGrid">
+                <Profile  image="./pic1.png" name="Nikil Damnkn" title="Founder & CEO" bio="Bio" />
+                <Profile image="./pic2.png" name="Arabin Damnkn" title="Founder & CEO" bio="Bio" />
+                <Profile image="./pic3.png" name="Niki andn" title="Founder & CEO" bio="Bio" />
+
+                <Profile image="./pic2.png" name="Nikrenn" title="Founder & CEO" bio="Bio" />
+                <Profile image="./pic1.png" name="Nikil Damnkn" title="Founder & CEO" bio="Bio" />
+                <Profile image="./pic3.png" name="Nikil Damnkn" title="Founder & CEO" bio="Bio" />
+
+                <Profile image="./pic2.png" name="Nikil Damnkn" title="Founder & CEO" bio="Bio" />
+
+
+            </div>
+        )
+    }
+
+    var elt = (
+        <>
+            <NavBar />
+            <HeroSection />
+            <Notes />
+            <People />
+            <Grid />
+        </>
+    )
+
+    var reactroot = ReactDOM.createRoot(document.getElementById("root"))
+    reactroot.render(elt);
+</script>
+
+</html>

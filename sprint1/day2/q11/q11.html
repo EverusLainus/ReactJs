@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components in React</title>
+  <style>
+    a {
+      text-decoration: none;
+      color: inherit;
+      /* Inherit the color from the parent element */
+    }
+
+    #root {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .NavBar {
+      display: flex;
+      justify-content: space-between;
+      justify-items: center;
+      align-items: center;
+    }
+
+    .logo {
+      color: aquamarine;
+    }
+
+    .NavTitle {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 3vw;
+    }
+
+    .invest {
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      align-items: center;
+    }
+
+    .SignUpButton {
+      border: none;
+      background-color: blue;
+      color: white;
+      padding: 1vw;
+    }
+
+    .largest {
+      display: flex;
+      margin-top: 10vw;
+    }
+
+    .featuresSection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10vw;
+    }
+
+    .logoList,
+    .featureList {
+      display: flex;
+    }
+
+    .trustSection,
+    .freeSection {
+      display: flex;
+      margin-top: 10vw;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    /* Nav Bar */
+    function NavTitle({ title }) {
+      return (
+        <span><a href="./index.html">{title}</a></span>
+      )
+    }
+    function NavBar() {
+      return (
+        <div className="NavBar">
+          <h4 className="logo">ZERODHA</h4>
+          <div className="NavTitle">
+            <NavTitle title="SignUp" />
+            <NavTitle title="About" />
+            <NavTitle title="Products" />
+            <NavTitle title="Pricing" />
+            <NavTitle title="Support" />
+            <img src="./menu.png" alt="menu" />
+          </div>
+        </div>
+      )
+    }
+    /* Hero Image */
+    function HeroSection() {
+      return (
+        <div className="HeroSection">
+          <img src="./image.png" alt="hero_image" />
+        </div>
+      )
+    }
+    /* Invest in Everything section */
+    function Invest() {
+      return (
+        <div className="invest">
+          <h1>Invest in Everything</h1>
+          <p>Online platform to invest in stock, derivatives and more</p>
+          <button className="SignUpButton">Sign Up Now</button>
+        </div>
+      )
+    }
+    //  quas rem officia atque!
+    /* Largest Section */
+    function FeatureList({ l1, l2, l3 }) {
+      return (
+        <ul>
+          <li>{l1}</li>
+          <li>{l2}</li>
+          <li>{l3}</li>
+        </ul>
+      )
+    }
+
+    function PartnerLogo({ src }) {
+      return (
+        <img src={src} />
+      )
+    }
+
+    function Features() {
+      return (
+        <div className="featuresSection">
+          <h4>Largest Stock Broker in India</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi error consequuntur vero recusandae.</p>
+          <div className="featureList">
+            <FeatureList l1="Fetures and Options" l2="Commodity Derivatives" l3="Currency Derivatives" />
+            <FeatureList l1="Stocks and IPO" l2="Direct funds" l3="Bonda and security" />
+          </div >
+          <div className="logoList">
+            <PartnerLogo src="./logo1.png" alt="logo1" />
+            <PartnerLogo src="./logo2.png" alt="logo2" />
+            <PartnerLogo src="./logo3.png" alt="logo3" />
+            <PartnerLogo src="./logo4.png" alt="logo4" />
+            <PartnerLogo src="./logo5.png" alt="logo5" />
+          </div>
+        </div>
+      )
+    }
+    function Largest() {
+      return (
+        <div className="largest">
+          <div><img src="./image_latest.png" alt="image" /></div>
+          <Features />
+        </div>
+      )
+    }
+    /* Trust Section */
+    function TrustPoint({ title, des }) {
+      return (
+        <div>
+          <h6>{title}</h6>
+          <p>{des}</p>
+        </div>
+      )
+
+    }
+    function TrustList() {
+      return (
+        <div>
+          <h4>Trust with Confidence</h4>
+          <TrustPoint title="Customer-first Always" des="repudiandae hic, sit quaerat ullam vel nemo commodi, adipisci ea, corrupti voluptate eaque" />
+          <TrustPoint title="NO Spam or Gimmicks" des="repudiandae hic, sit quaerat ullam vel nemo commodi, adipisci ea, corrupti voluptate eaque" />
+          <TrustPoint title="No Zeroda space" des="repudiandae hic, sit quaerat ullam vel nemo commodi, adipisci ea, corrupti voluptate eaque" />
+          <TrustPoint title="Do better with money" des="repudiandae hic, sit quaerat ullam vel nemo commodi, adipisci ea, corrupti voluptate eaque" />
+        </div>
+      )
+    }
+    function Trust() {
+      return (
+        <div className="trustSection">
+          <TrustList />
+          <div><img src="./circle.png" /></div>
+        </div>
+      )
+    }
+    /*Section Pricing*/
+    function PricingLeft() {
+      return (
+        <div>
+          <h4>Unbeatable Pricing</h4>
+          <p>repudiandae hic, sit quaerat ullam vel nemo commodi, adipisci ea, corrupti voluptate eaque</p>
+          <p style={{ color: "blue", fontSize: "5px" }}>See Pricing</p>
+        </div>
+      )
+    }
+    function Box({ price, des }) {
+      return (
+        <div style={{ border: "1px solid black", padding: "10px" }}>
+          <h4>{price}</h4>
+          <p>{des}</p>
+        </div>
+      )
+    }
+    //  laudantium accusantium temporibus aut. Fuga, eveniet error? Vel amet reiciendis est ipsum. Numquam, eveniet! Excepturi illum aut soluta consectetur.
+    function PricingRight() {
+      return (
+        <div style={{ display: "flex", gap: "10px" }}>
+          <Box price="$0" des=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum iusto." />
+          <Box price="$20" des=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum iusto." />
+        </div>
+      )
+    }
+    function Pricing() {
+      return (
+        <div style={{ display: "flex" }}>
+          <PricingLeft />
+          <PricingRight />
+        </div>
+      )
+    }
+    /*Free Section*/
+    function Free() {
+      return (
+        <div className="freeSection">
+          <div><img src="varsity.png" /></div>
+          <div>
+            <h4>Free and Open Market Education</h4>
+            <TrustPoint title="" des="repudiandae hic, sit quaerat ullam vel nemo commodi, adipisci ea, corrupti voluptate eaque" />
+            <p style={{ color: "blue", fontSize: "5px" }}>See Pricing</p>
+            <TrustPoint title="" des="repudiandae hic, sit quaerat ullam vel nemo commodi, adipisci ea, corrupti voluptate eaque" />
+            <p style={{ color: "blue", fontSize: "5px" }}>See Pricing</p>
+          </div>
+        </div>
+
+      )
+    }
+    /*last section*/
+    function Last() {
+      return (
+        <div className="invest">
+          <h1>Open a ZERODHA Account</h1>
+          <p>Online platform to invest in stock, derivatives and more</p>
+          <button className="SignUpButton">Sign Up Now</button>
+        </div>
+      )
+    }
+    var elt = (
+      <>
+        <NavBar />
+        <HeroSection />
+        <Invest />
+        <Largest />
+        <Trust />
+        <Pricing />
+        <Free />
+        <Last />
+      </>
+    )
+
+    var reactroot = ReactDOM.createRoot(document.getElementById("root"))
+    reactroot.render(elt);
+  </script>
+</body>
+
+</html>
