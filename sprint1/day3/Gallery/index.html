@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <style>
+      #root {
+        max-width: 1300px;
+        margin: auto;
+      }
+      body {
+        margin: 0px;
+      }
+      .card {
+        width: 100px;
+        height: 200px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1vw;
+        padding: 1vw;
+      }
+      .cardHead {
+        width: 80px;
+        height: 150px;
+        background-color: aqua;
+        border: 1px solid black;
+      }
+      .cardFoot {
+        width: 80px;
+        height: 50px;
+        border: 1px solid black;
+        background-color: aquamarine;
+      }
+      .NavBar {
+        display: flex;
+        flex-direction: row;
+        justify-items: left;
+        align-items: left;
+        gap: 1vw;
+        background-color: black;
+        color: white;
+        padding: 1vw;
+        margin-bottom: 2vw;
+      }
+      .display {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2vw;
+      }
+      @media (width <= 900px) {
+        .display {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1vw;
+        }
+      }
+      @media (width <= 500px) {
+        .display {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function Card() {
+      return (
+        <div className="card">
+          <div className="cardHead"></div>
+          <div className="cardFoot"></div>
+        </div>
+      );
+    }
+    function NavBar() {
+      return (
+        <div className="NavBar">
+          <span>Home</span>
+          <span>Gallery</span>
+          <span>About</span>
+          <span>Contact</span>
+        </div>
+      );
+    }
+    function Display() {
+      return (
+        <div className="display">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      );
+    }
+    function App() {
+      //change status to inactive
+
+      return (
+        <>
+          <NavBar />
+          <Display />
+        </>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</html>
