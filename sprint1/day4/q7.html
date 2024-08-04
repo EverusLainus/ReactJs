@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Template</title>
+    <style>
+      .done {
+        text-decoration: line-through;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
@@ -12,27 +17,6 @@
   <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function Filter({ status, setStatus, todos, addtodo }) {
-      function handleChange(e) {
-        console.log("handle change form filter");
-        e.preventDefault();
-        setStatus(e.target.value);
-        console.log(e.target.value);
-        const updatedTodos = todos.filter((elt) => {
-          return elt.status === e.target.value;
-        });
-        addtodo(updatedTodos);
-        console.log(todos);
-      }
-      return (
-        <select name="filter" id="filter" onChange={handleChange}>
-          <option value="">filter by status</option>
-          <option value="active">completed</option>
-          <option value="inActive">incomplete</option>
-        </select>
-      );
-    }
-
     function Form({ todos, addtodo }) {
       const [value, setValue] = React.useState("");
       function handleSubmit(e) {
@@ -40,7 +24,7 @@
         console.log(e.target[0]);
         var obj = {
           title: value,
-          status: "active",
+          status: false,
         };
         addtodo([...todos, obj]);
       }
@@ -58,11 +42,12 @@
     }
 
     function Display({ todos, addtodo }) {
-      function handleStatus(e, tit) {
+      function handleChange(e, tit) {
         e.preventDefault();
+
         const updatedTodos = todos.map((elt) => {
           if (elt.title === tit) {
-            return { ...elt, status: "inActive" };
+            return { ...elt, status: elt.status ? false : true };
           }
           return elt;
         });
@@ -74,19 +59,14 @@
             return (
               <div key={i}>
                 <p>{elt.title}</p>
-                <div>
-                  {elt.status == "active" ? (
-                    <button
-                      onClick={(e) => {
-                        handleStatus(e, elt.title);
-                      }}
-                    >
-                      Mark as completed
-                    </button>
-                  ) : (
-                    <button>Mark as incomplete</button>
-                  )}
-                </div>
+                <input
+                  type="checkbox"
+                  checked={elt.status}
+                  className={elt.status ? "notDone" : "done"}
+                  onChange={(e) => {
+                    handleChange(e, elt.title);
+                  }}
+                />
               </div>
             );
           })}
@@ -96,18 +76,10 @@
 
     function App() {
       const [todos, addTodo] = React.useState([]);
-      const [status, setStatus] = React.useState("all");
-      //change status to inactive
 
       return (
         <>
           <Form todos={todos} addtodo={addTodo} />
-          <Filter
-            status={status}
-            setStatus={setStatus}
-            todos={todos}
-            addtodo={addTodo}
-          />
           <Display todos={todos} addtodo={addTodo} />
         </>
       );
