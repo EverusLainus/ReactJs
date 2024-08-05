@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const Page1 = ({ name, setName, email, setEmail, level, setLevel }) => {
+      function handleName(e) {
+        setName(e.target.value);
+        console.log(e.target.value);
+      }
+
+      function handleEmail(e) {
+        setEmail(e.target.value);
+        console.log(e.target.value);
+      }
+
+      function handleLevel(e) {
+        setLevel(e.target.value);
+        console.log(e.target.value);
+      }
+
+      return (
+        <div>
+          <input onChange={handleName} type="text" placeholder="name" />
+          <input onChange={handleEmail} type="text" placeholder="email" />
+          <select onChange={handleLevel} name="level" id="level">
+            <option value="beginner">beginner</option>
+            <option value="intermediate">intermediate</option>
+            <option value="expert">expert</option>
+          </select>
+          <h1>page 1</h1>
+        </div>
+      );
+    };
+
+    const Page2 = ({ rating, setRating }) => {
+      return (
+        <div>
+          <select name="rating" id="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      );
+    };
+
+    const Page3 = () => {
+      return (
+        <div>
+          <h1>page 3</h1>
+        </div>
+      );
+    };
+    function App() {
+      const [step, setState] = React.useState(1);
+      const [data, setData] = React.useState([]);
+      const [name, setName] = React.useState("");
+      const [email, setEmail] = React.useState("");
+      const [level, setLevel] = React.useState("");
+      const [rating, setRating] = React.useState(0);
+
+      function handleNextStep() {
+        if (step == 1) {
+          setState(2);
+        } else if (step == 2) {
+          setState(3);
+        }
+        console.log(name + " " + email + " " + level + " " + rating);
+      }
+      function handlePrevStep() {
+        if (step == 3) {
+          setState(2);
+        } else if (step == 2) {
+          setState(1);
+        }
+      }
+
+      return (
+        <div>
+          <div>
+            {step == 1 && (
+              <Page1
+                name={name}
+                setName={setName}
+                email={email}
+                setEmail={setEmail}
+                level={level}
+                setLevel={setLevel}
+              />
+            )}
+            {step == 2 && <Page2 rating={rating} setRating={setRating} />}
+            {step == 3 && (
+              <div>
+                <p>{name}</p>
+                <p>{email}</p>
+                <p>{level}</p>
+                <p>{rating}</p>
+              </div>
+            )}
+          </div>
+          <button onClick={handlePrevStep}>prev</button>
+          <button onClick={handleNextStep}>next</button>
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</html>
