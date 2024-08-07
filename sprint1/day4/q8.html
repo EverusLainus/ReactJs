@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <style>
+      .done {
+        text-decoration: line-through;
+      }
+      .grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1vw;
+      }
+      .card {
+        border: 1px solid black;
+        padding: 1vw;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const url = "https://fakestoreapi.com/products";
+    function Display({ data, addData }) {
+      function handleChange(e, tit) {
+        e.preventDefault();
+
+        const updatedTodos = todos.map((elt) => {
+          if (elt.title === tit) {
+            return { ...elt, status: elt.status ? false : true };
+          }
+          return elt;
+        });
+        addtodo(updatedTodos);
+      }
+      return (
+        <div className="grid">
+          <h6>Product Cards</h6>
+          {data.map((elt, i) => {
+            return (
+              <div key={i} className="card">
+                <p>{elt.title}</p>
+                <p>{elt.category}</p>
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+
+    function App() {
+      const [data, addData] = React.useState([]);
+      const [flag, setFlag] = React.useState(true);
+
+      if (flag) {
+        const fetchData = () => {
+          fetch(url)
+            .then((res) => {
+              return res.json();
+            })
+            .then((data) => {
+              console.log(data);
+              addData(data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        };
+        fetchData();
+
+        setFlag(false);
+      }
+
+      function handleFilter(e) {
+        e.preventDefault();
+
+        let filteredData = data.filter((elt) => {
+          return elt.category === e.target.value;
+        });
+        addData(filteredData);
+        console.log(filteredData);
+      }
+
+      return (
+        <>
+          <div>
+            <select name="filter" id="" onChange={handleFilter}>
+              <option value="">filter by category</option>
+              <option value="jewelery">jewelery</option>
+              <option value="men's clothing">men's clothing</option>
+              <option value="women's clothing">women's clothing</option>
+              <option value="electronics">electronics</option>
+            </select>
+          </div>
+          <Display data={data} addData={addData} />
+        </>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</html>
