@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <style>
+      .card {
+        border: 1px solid black;
+        padding: 1vw;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2vw;
+      }
+      form {
+        margin: 2vw;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/babel">
+    function App() {
+      const [loading, setLoading] = React.useState(true);
+      const [location, setLocation] = React.useState("");
+      const [data, setData] = React.useState([]);
+      const [show, setShow] = React.useState(false);
+      const [fav, setFav] = React.useState([]);
+
+      function fetchData(loc) {
+        const url = `http://api.openweathermap.org/geo/1.0/direct?q=${loc}&limit=5&appid=6e1d0c9a59c2bcf69d07c768d62d03da`;
+
+        console.log("url" + url);
+        fetch(url)
+          .then((elt) => {
+            return elt.json();
+          })
+          .then((res) => {
+            console.log(res);
+            setData(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      if (loading) {
+        setLoading(false);
+      }
+      function handleSearch(e) {
+        e.preventDefault();
+        setLocation(e.target[0].value);
+        console.log(e.target[0].value);
+        fetchData(e.target[0].value);
+        setShow(true);
+      }
+      function handleFav(name) {
+        setFav([...fav, name]);
+        console.log(fav);
+      }
+      return (
+        <div>
+          <form onSubmit={handleSearch}>
+            <input type="text" placeholder="Search for a location" />
+            <button type="submit">Search</button>
+          </form>
+          {show && (
+            <div className="grid">
+              {data.map((elt, i) => {
+                console.log(elt);
+                return (
+                  <div className="card">
+                    <p>{elt.name}</p>
+                    <p>{elt.state}</p>
+                    <p>
+                      {elt.lat}, {elt.lon}
+                    </p>
+                    <button
+                      onClick={() => {
+                        handleFav(elt.name);
+                      }}
+                    >
+                      mark as favorite
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          <div>
+            <h1>Favorites</h1>
+            {fav.map((elt, i) => {
+              return <div>{elt}</div>;
+            })}
+          </div>
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</html>
