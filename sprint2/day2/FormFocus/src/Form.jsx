@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 
@@ -37,6 +38,9 @@ export const Form = () => {
       setEmailError("");
     }
   };
+  useEffect(() => {
+    nameRef.current.focus();
+  }, []);
 
   return (
     <div>
