@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/babel">
+    // Your  code will go here
+    function Form() {
+      const [isCompleted, setIsCompleted] = React.useState(false);
+      function handleSubmit(e) {
+        e.preventDefault();
+        console.log(
+          e.target[0].value + " " + e.target[1].value + " " + e.target[2].value
+        );
+      }
+      return (
+        <div>
+          <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="Enter a Title" />
+            <input
+              type="checkbox"
+              checked={isCompleted}
+              onChange={() => {
+                setIsCompleted(!isCompleted);
+                console.log(isCompleted);
+              }}
+            />
+            <select name="assignee" id="assignee">
+              <option value="">Assignee</option>
+              <option value="Alan">Alan</option>
+              <option value="Elen">Elen</option>
+            </select>
+            <button type="submit">submit</button>
+          </form>
+        </div>
+      );
+    }
+    function App() {
+      return (
+        <div>
+          <Form />
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</html>
