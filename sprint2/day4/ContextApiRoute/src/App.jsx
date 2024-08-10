@@ -3,9 +3,9 @@ import { Home } from "./Home";
 import { About } from "./About";
 import { NavBar } from "./NavBar";
 import { Products } from "./Products";
-
+import { Contact } from "./Contact";
 import { Routes, Route } from "react-router-dom";
-import { ProductsDisplay } from "./ProductsDisplay";
+import { Login } from "./Login";
 
 function App() {
   return (
@@ -16,7 +16,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/productsdisplay" element={<ProductsDisplay />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </>

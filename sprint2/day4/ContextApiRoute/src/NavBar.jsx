@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
 export const NavBar = () => {
   const navigate = useNavigate();
+  const { isAuth } = useContext(AuthContext);
   return (
     <div className="navbar">
       <button
@@ -20,17 +23,24 @@ export const NavBar = () => {
       </button>
       <button
         onClick={() => {
-          navigate("/products");
+          isAuth ? navigate("/products") : navigate("/login");
         }}
       >
         Products
       </button>
       <button
         onClick={() => {
-          navigate("/productsdisplay");
+          navigate("/contact");
         }}
       >
-        Products Display
+        Contact
+      </button>
+      <button
+        onClick={() => {
+          navigate("/login");
+        }}
+      >
+        Login
       </button>
     </div>
   );
