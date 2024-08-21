@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export const Timer = () => {
+export const useTimer = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     var timer;
@@ -46,30 +46,5 @@ export const Timer = () => {
     }
     return () => clearInterval(timer);
   }, [state.isRunning, state.time]);
-  return (
-    <div>
-      <h1>{state.time}</h1>
-      <button
-        onClick={() => {
-          dispatch({ type: "START_TIMER" });
-        }}
-      >
-        start
-      </button>
-      <button
-        onClick={() => {
-          dispatch({ type: "STOP_TIMER" });
-        }}
-      >
-        stop
-      </button>
-      <button
-        onClick={() => {
-          dispatch({ type: "RESET_TIMER" });
-        }}
-      >
-        reset
-      </button>
-    </div>
-  );
+  return [state, dispatch];
 };
