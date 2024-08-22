@@ -1,0 +1,12 @@
+#root {
+  max-width: 1280px;
+  margin: auto;
+  margin-top: 0px;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: antiquewhite;
+}
