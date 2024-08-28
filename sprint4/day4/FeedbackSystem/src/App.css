@@ -1,0 +1,11 @@
+#root {
+  max-width: 1280px;
+  margin: auto;
+  width: 100%;
+}
+
+tr,
+td {
+  padding: 2vw;
+  border: "1px solid black";
+}
